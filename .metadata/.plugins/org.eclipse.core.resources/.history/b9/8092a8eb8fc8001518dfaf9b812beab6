@@ -80,7 +80,7 @@ public class Atari_Breakout implements ActionListener, KeyListener, MouseMotionL
 			Random random = new Random();
 			int rWidth = random.nextInt(70) + 60;
 
-			Blocks.Blox[i + 3] = new Blocks(currentX, currentY, 1000, 50, true);
+			Blocks.Blox[i + 3] = new Blocks(currentX, currentY, rWidth, 50, true);
 			currentX = currentX + rWidth + 5;
 			if (currentX > 1850)
 			{
@@ -92,7 +92,11 @@ public class Atari_Breakout implements ActionListener, KeyListener, MouseMotionL
 				currentX = 0;
 			}
 		}
-
+		if (Blocks.Blox.length == 0)
+		{
+			JOptionPane.showMessageDialog(null, "You WIN!!!");
+			frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+		}
 	}
 
 	@Override

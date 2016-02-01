@@ -90,7 +90,7 @@ public class Animation_Panel extends JPanel
 			JOptionPane.showMessageDialog(null, "YOU LOSE!!!");
 			frum.frame.setDefaultCloseOperation(frum.frame.EXIT_ON_CLOSE);
 		}
-		System.out.println(Blocks.Blox.length);
+		System.out.print(Blocks.Blox.length);
 		if (Blocks.Blox.length == 0)
 		{
 			JOptionPane.showMessageDialog(null, "You WIN!!!");

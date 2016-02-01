@@ -44,7 +44,7 @@ public class Animation_Panel extends JPanel
 		ball.paint(g);
 		g.setColor(Color.WHITE);
 		g.setFont(Big);
-		g.drawString("Lives:" + lives, 50, 100);
+		g.drawString("Lives:" + lives, 100, 100);
 
 	}
 
@@ -87,14 +87,8 @@ public class Animation_Panel extends JPanel
 		}
 		if (lives == 0)
 		{
+			frum.frame.setDefaultCloseOperation(frum.frame.EXIT_ON_CLOSE);
 			JOptionPane.showMessageDialog(null, "YOU LOSE!!!");
-			frum.frame.setDefaultCloseOperation(frum.frame.EXIT_ON_CLOSE);
-		}
-		System.out.println(Blocks.Blox.length);
-		if (Blocks.Blox.length == 0)
-		{
-			JOptionPane.showMessageDialog(null, "You WIN!!!");
-			frum.frame.setDefaultCloseOperation(frum.frame.EXIT_ON_CLOSE);
 		}
 	}
 

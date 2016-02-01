@@ -95,6 +95,15 @@ public class Atari_Breakout implements ActionListener, KeyListener, MouseMotionL
 
 	}
 
+	public void update()
+	{
+		if (Blocks.Blox.length == 0)
+		{
+			JOptionPane.showMessageDialog(null, "You WIN!!!");
+			frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+		}
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{

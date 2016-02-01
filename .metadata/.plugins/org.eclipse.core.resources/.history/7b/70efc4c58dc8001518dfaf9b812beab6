@@ -25,7 +25,7 @@ public class Animation_Panel extends JPanel
 		pinger = new Pinger(800, 900, 400, 15);
 		ball = new Ball(spawnX, spawnY, 20, 20);
 		blocks = new Blocks(925, 450, 125, 50, false);
-		Big = new Font("Times New Roman", Font.BOLD, 100);
+		Big = new Font("Times New Roman", Font.BOLD,30);
 	}
 
 	public void paint(Graphics g)
@@ -42,10 +42,8 @@ public class Animation_Panel extends JPanel
 		pinger.paint(g);
 		// blocks.paint(g);
 		ball.paint(g);
-		g.setColor(Color.WHITE);
-		g.setFont(Big);
-		g.drawString("Lives:" + lives, 50, 100);
-
+		g.drawString("Lives:" + lives, 100, 100);
+		
 	}
 
 	private void checkcollisionbox()
@@ -87,14 +85,8 @@ public class Animation_Panel extends JPanel
 		}
 		if (lives == 0)
 		{
+			frum.frame.setDefaultCloseOperation(frum.frame.EXIT_ON_CLOSE);
 			JOptionPane.showMessageDialog(null, "YOU LOSE!!!");
-			frum.frame.setDefaultCloseOperation(frum.frame.EXIT_ON_CLOSE);
-		}
-		System.out.println(Blocks.Blox.length);
-		if (Blocks.Blox.length == 0)
-		{
-			JOptionPane.showMessageDialog(null, "You WIN!!!");
-			frum.frame.setDefaultCloseOperation(frum.frame.EXIT_ON_CLOSE);
 		}
 	}
 
