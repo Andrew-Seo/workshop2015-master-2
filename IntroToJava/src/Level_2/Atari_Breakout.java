@@ -1,5 +1,6 @@
 package Level_2;
 
+import java.applet.AudioClip;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -8,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.Random;
 
+import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -66,21 +68,13 @@ public class Atari_Breakout implements ActionListener, KeyListener, MouseMotionL
 		Blocks.Blox[0] = new Blocks(0, 0, 2400, 5, false);
 		Blocks.Blox[1] = new Blocks(1895, 0, 5, 1000, false);
 		Blocks.Blox[2] = new Blocks(0, 0, 5, 1000, false);
-		/*
-		 * for (int i = 0; i < 76; i++) { Random random = new Random(); int
-		 * rWidth = random.nextInt(70) + 60;
-		 * 
-		 * Blocks.Blox[i + 3] = new Blocks(currentX, currentY, rWidth, 50,
-		 * true); currentX = currentX + rWidth + 5; if (currentX > 1850) {
-		 * currentY = currentY + 60; if (76 - i < 12) { break; } currentX = 0; }
-		 * }
-		 */
-		for (int i = 0; i < 1; i++)
+
+		for (int i = 0; i < 76; i++)
 		{
 			Random random = new Random();
 			int rWidth = random.nextInt(70) + 60;
 
-			Blocks.Blox[i + 3] = new Blocks(currentX, currentY, 1000, 50, true);
+			Blocks.Blox[i + 3] = new Blocks(currentX, currentY, rWidth, 50, true);
 			currentX = currentX + rWidth + 5;
 			if (currentX > 1850)
 			{
@@ -93,6 +87,12 @@ public class Atari_Breakout implements ActionListener, KeyListener, MouseMotionL
 			}
 		}
 
+	}
+
+	public void playSound(String filename)
+	{
+		AudioClip sound = JApplet.newAudioClip(getClass().getResource(filename));
+		sound.play();
 	}
 
 	@Override
