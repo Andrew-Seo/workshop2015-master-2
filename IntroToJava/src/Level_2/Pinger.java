@@ -11,6 +11,8 @@ public class Pinger
 	public int height;
 	public int width;
 	private Rectangle collisionbox;
+	int direction = 2;
+	Ball balls;
 
 	public Pinger(int a, int b, int c, int d)
 	{
@@ -24,6 +26,27 @@ public class Pinger
 	public void update()
 	{
 		collisionbox.setBounds(x, y, width, height);
+	}
+
+	public void ChangeDirection()
+	{
+		if (direction == 0)
+		{
+			direction = 1;
+			return;
+		} else if (direction == 1)
+		{
+			direction = 2;
+			return;
+		} else if (direction == 2)
+		{
+			direction = 4;
+			return;
+		} else if (direction == 3)
+		{
+			direction = 1;
+			return;
+		}
 	}
 
 	public Rectangle getCollisionBox()

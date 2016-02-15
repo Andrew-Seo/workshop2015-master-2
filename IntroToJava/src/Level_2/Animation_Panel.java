@@ -19,9 +19,11 @@ public class Animation_Panel extends JPanel
 	int spawnX = new Random().nextInt(975);
 	int spawnY = 750;
 	int lives = 5;
+	boolean sound = true;
 
-	Animation_Panel()
+	Animation_Panel(Atari_Breakout x)
 	{
+		frum = x;
 		pinger = new Pinger(800, 900, 400, 15);
 		ball = new Ball(spawnX, spawnY, 20, 20);
 		blocks = new Blocks(925, 450, 125, 50, false);
@@ -71,6 +73,19 @@ public class Animation_Panel extends JPanel
 					blocks.Blox[i].y = -100;
 				}
 			}
+			if (r1.intersects(r2))
+			{
+				if (sound)
+				{
+					pinger.ChangeDirection();
+					frum.playSound("18528.wav");
+					sound = false;
+				}
+			} else
+			{
+				sound = true;
+			}
+
 		}
 
 	}
@@ -88,8 +103,9 @@ public class Animation_Panel extends JPanel
 		}
 		if (lives == 0)
 		{
+			frum.playSound("18533.wav");
 			JOptionPane.showMessageDialog(null, "YOU LOSE!!!");
-			frum.frame.setDefaultCloseOperation(frum.frame.EXIT_ON_CLOSE);
+			System.exit(0);
 		}
 		System.out.println(Blocks.Blox.length);
 		boolean allbroken = true;
