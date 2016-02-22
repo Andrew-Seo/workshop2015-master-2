@@ -26,7 +26,7 @@ public class Animation_Panel extends JPanel
 		frum = x;
 		pinger = new Pinger(800, 900, 400, 15);
 		ball = new Ball(spawnX, spawnY, 20, 20);
-		blocks = new Blocks(925, 450, 125, 50, false);
+		blocks = new Blocks(925, 450, 125, 50, false, Color.BLUE);
 		Big = new Font("Times New Roman", Font.BOLD, 100);
 	}
 
@@ -37,7 +37,9 @@ public class Animation_Panel extends JPanel
 
 		for (int i = 0; i < Blocks.Blockamount - 1; i++)
 		{
-			g.setColor(new Color((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255)));
+			g.setColor(Blocks.Blox[i].randommy);
+			// g.setColor(new Color((int) (Math.random() * 255), (int)
+			// (Math.random() * 255), (int) (Math.random() * 255)));
 			g.fillRect(Blocks.Blox[i].x, Blocks.Blox[i].y, Blocks.Blox[i].width, Blocks.Blox[i].height);
 		}
 
@@ -122,7 +124,21 @@ public class Animation_Panel extends JPanel
 		if (allbroken)
 		{
 			JOptionPane.showMessageDialog(null, "You WIN!!!");
-			frum.frame.setDefaultCloseOperation(frum.frame.EXIT_ON_CLOSE);
+			int choice = JOptionPane.showConfirmDialog(null,
+					"Do you want to play again? If yes, then click the \"Yes\" button. If no, then click the \"No\" button. Hope you had Fun!",
+					null, JOptionPane.YES_NO_OPTION);
+			if (choice == JOptionPane.NO_OPTION)
+			{
+
+				System.exit(0);
+			}
+			if (choice == JOptionPane.YES_OPTION)
+			{
+				CreateNew c = new CreateNew();
+				Thread t = new Thread(c);
+				t.start();
+
+			}
 		}
 	}
 

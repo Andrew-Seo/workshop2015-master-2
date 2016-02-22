@@ -10,10 +10,11 @@ public class Blocks
 	public int height;
 	public int width;
 	public boolean breakable;
+	public Color randommy;
 	static Blocks[] Blox = new Blocks[85];
 	public static int Blockamount;
 
-	public Blocks(int a, int b, int c, int d, boolean sup)
+	public Blocks(int a, int b, int c, int d, boolean sup, Color supper)
 	{
 		x = a;
 		y = b;
@@ -21,6 +22,7 @@ public class Blocks
 		height = d;
 		Blockamount++;
 		breakable = sup;
+		randommy = supper;
 
 	}
 
