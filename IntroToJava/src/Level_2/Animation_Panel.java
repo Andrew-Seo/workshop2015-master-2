@@ -15,8 +15,9 @@ public class Animation_Panel extends JPanel
 	Blocks blocks;
 	Ball ball;
 	Atari_Breakout frum;
+	Replay replay;
 	Font Big;
-	int spawnX = new Random().nextInt(975);
+	int spawnX = new Random().nextInt(1875) + 25;
 	int spawnY = 750;
 	int lives = 5;
 	boolean sound = true;
@@ -123,22 +124,9 @@ public class Animation_Panel extends JPanel
 		}
 		if (allbroken)
 		{
-			JOptionPane.showMessageDialog(null, "You WIN!!!");
-			int choice = JOptionPane.showConfirmDialog(null,
-					"Do you want to play again? If yes, then click the \"Yes\" button. If no, then click the \"No\" button. Hope you had Fun!",
-					null, JOptionPane.YES_NO_OPTION);
-			if (choice == JOptionPane.NO_OPTION)
-			{
 
-				System.exit(0);
-			}
-			if (choice == JOptionPane.YES_OPTION)
-			{
-				CreateNew c = new CreateNew();
-				Thread t = new Thread(c);
-				t.start();
-
-			}
+			// replay = new Replay();
+			System.exit(0);
 		}
 	}
 

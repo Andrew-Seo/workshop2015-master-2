@@ -1,0 +1,46 @@
+package Level_2;
+
+import javax.swing.JOptionPane;
+
+public class Something
+{
+	Atari_Breakout breakout;
+
+	public static void main(String[] args)
+	{
+
+		Something hellop = new Something();
+	}
+
+	Something()
+	{
+		boolean allbroken = true;
+		for (int i = 0; i < Blocks.Blockamount - 1; i++)
+		{
+			if (Blocks.Blox[i].breakable)
+			{
+				if (Blocks.Blox[i].y != -100)
+				{
+					allbroken = false;
+				}
+			}
+		}
+		if (allbroken)
+		{
+			JOptionPane.showMessageDialog(null, "You WIN!!!");
+			int choice = JOptionPane.showConfirmDialog(null,
+					"Do you want to play again? If yes, then click the \"Yes\" button. If no, then click the \"No\" button. Hope you had Fun!",
+					null, JOptionPane.YES_NO_OPTION);
+			if (choice == JOptionPane.NO_OPTION)
+			{
+
+				System.exit(0);
+			}
+			if (choice == JOptionPane.YES_OPTION)
+			{
+				breakout = new Atari_Breakout();
+
+			}
+		}
+	}
+}
