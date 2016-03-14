@@ -1,0 +1,49 @@
+package Level_2;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+public class GamePanel extends JPanel implements ActionListener
+{
+	Timer gameTimer;
+	int Blockx = 0;
+	int Blocky = 0;
+	boolean rightmoving = true;
+
+	public void paintComponent(Graphics g)
+	{
+		g.setColor(Color.BLUE);
+		g.fillRect(Blockx, Blocky, 200, 200);
+
+	}
+
+	GamePanel()
+	{
+		gameTimer = new Timer(50, this);
+		gameTimer.start();
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+
+		// Blockx = Blockx + 2;
+		// Blocky = Blocky + 2;
+		if (Blockx > 1000 && rightmoving == true)
+		{
+			rightmoving = false;
+			Blockx = Blockx - 2;
+		} else if (rightmoving)
+		{
+			Blockx = Blockx + 2;
+		}
+		repaint();
+
+	}
+}

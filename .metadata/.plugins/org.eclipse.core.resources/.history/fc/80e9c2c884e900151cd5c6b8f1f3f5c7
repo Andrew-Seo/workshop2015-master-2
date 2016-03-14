@@ -1,0 +1,39 @@
+package Level_2;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+public class GamePanel extends JPanel implements ActionListener
+{
+	Timer gameTimer;
+	int Blockx = 0;
+	int Blocky = 0;
+
+	public void paintComponent(Graphics g)
+	{
+		g.setColor(Color.BLUE);
+		g.fillRect(10, 10, 200, 200);
+
+	}
+
+	GamePanel()
+	{
+		gameTimer = new Timer(1000, this);
+		gameTimer.start();
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+
+		repaint();
+		Blockx = Blockx + 200;
+
+	}
+}

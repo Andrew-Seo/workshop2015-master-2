@@ -1,0 +1,38 @@
+package Level_2;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+import com.sun.prism.Graphics;
+
+public class GamePanel extends JPanel implements ActionListener
+{
+	Timer gameTimer;
+
+	Graphics g;
+
+	public void paintComponent(Graphics g)
+	{
+		g.fillRect(10, 10, 200, 200);
+	}
+
+	GamePanel()
+	{
+		gameTimer = new Timer(1000, this);
+		gameTimer.start();
+
+	}
+
+	
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		System.out.println("86");
+		paintComponent(g);
+
+	}
+}
