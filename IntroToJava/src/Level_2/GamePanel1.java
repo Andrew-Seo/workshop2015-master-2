@@ -9,7 +9,7 @@ import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class GamePanel extends JPanel implements ActionListener
+public class GamePanel1 extends JPanel implements ActionListener
 {
 	Timer gameTimer;
 	// int Blockx = 0;
@@ -19,6 +19,10 @@ public class GamePanel extends JPanel implements ActionListener
 	int l = new Random().nextInt(100);
 	int d = new Random().nextInt(100);
 	boolean rightmoving = true;
+	public static void main(String[] args)
+	{
+
+	}
 
 	public void paintComponent(Graphics g)
 	{
@@ -27,11 +31,10 @@ public class GamePanel extends JPanel implements ActionListener
 
 	}
 
-	GamePanel()
+	GamePanel1()
 	{
 		gameTimer = new Timer(50, this);
 		gameTimer.start();
-
 	}
 
 	@Override
