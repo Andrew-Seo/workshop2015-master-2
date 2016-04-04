@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import java.util.Random;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -17,7 +18,7 @@ public class GamePanel2 extends JPanel implements KeyListener, ActionListener
 	
 	int Blockx = new Random().nextInt(500);
 	int Blocky = new Random().nextInt(500);
-	int panelWidth = 1000;
+	int panelWidth= 1900;
 	int panelHeight = 1000;
 	Timer gameTimer;
 	JFrame frame;
@@ -46,8 +47,14 @@ public class GamePanel2 extends JPanel implements KeyListener, ActionListener
 	
 	public void paintComponent(Graphics g)
 	{
-		g.setColor(Color.BLUE);
+		g.setColor(Color.GREEN);
+		g.fillRect(200, 200, 200, 200);
+		g.setColor(Color.BLACK);
 		g.fillRect(Blockx, Blocky, 200, 200);
+		g.setColor(Color.BLUE);
+		g.fillRect(300, 300, 200, 200);
+		g.setColor(Color.ORANGE);
+		g.fillRect(400, 400, 200, 200);
 
 	}
 
@@ -63,8 +70,8 @@ public class GamePanel2 extends JPanel implements KeyListener, ActionListener
 	public void keyPressed(KeyEvent e)
 	{
 		// TODO Auto-generated method stub
-		if (e.getSource() == ""){
-			
+		if (e.getSource() == "w"){
+			JOptionPane.showMessageDialog(null, "Hai my name is jeff, and  so stop samming me please.");
 		}
 	}
 
