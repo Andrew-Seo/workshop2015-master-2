@@ -12,7 +12,6 @@ public class Pinger
 	public int width;
 	private Rectangle collisionbox;
 	int direction = 2;
-	Ball balls;
 
 	public Pinger(int a, int b, int c, int d)
 	{
@@ -54,16 +53,10 @@ public class Pinger
 		return collisionbox;
 	}
 
-	public void moveLeft()
-	{
-		x = x - 50;
-
+	public void move(int mouseX){
+		x = mouseX - (width/2);
 	}
-
-	public void moveRight()
-	{
-		x = x + 50;
-	}
+	
 
 	public void paint(Graphics g)
 	{

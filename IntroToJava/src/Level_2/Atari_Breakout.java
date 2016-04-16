@@ -16,18 +16,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
-public class Atari_Breakout implements ActionListener, KeyListener, MouseMotionListener
+public class Atari_Breakout implements KeyListener, MouseMotionListener
 {
 	JFrame frame;
-	JButton play;
-	JButton exit;
 	Animation_Panel panel;
-	Replay replays;
-	Timer timer;
 
 	public final int panelWidth = 1900;
 	public final int panelHeight = 1000;
-
+	
 	public static void main(String[] args)
 	{
 
@@ -52,60 +48,49 @@ public class Atari_Breakout implements ActionListener, KeyListener, MouseMotionL
 		panel = new Animation_Panel(this);
 		frame.add(panel);
 
-		timer = new Timer(1000 / 240, this);
-		timer.start();
-
-		play = new JButton("Play");
-		panel.add(play);
-		play.addActionListener(this);
-
-		exit = new JButton("Exit");
-		panel.add(exit);
-		exit.addActionListener(this);
-
 		frame.setSize(panelWidth, panelHeight);
-
-		int currentX = 0;
-		int currentY = 400;
-
-		// Create Blox
-		Blocks.Blox[0] = new Blocks(0, 0, 2400, 5, false, Color.BLUE);
-		Blocks.Blox[1] = new Blocks(1895, 0, 5, 1000, false, Color.BLUE);
-		Blocks.Blox[2] = new Blocks(0, 0, 5, 1000, false, Color.BLUE);
-
-		/*
-		 * for (int i = 0; i < 1; i++) { Random random = new Random(); int
-		 * rWidth = random.nextInt(70) + 60;
-		 * 
-		 * Blocks.Blox[i + 3] = new Blocks(currentX, currentY, 1000, 50, true,
-		 * new Color((int) (Math.random() * 255), (int)
-		 * 
-		 * (Math.random() * 255), (int) (Math.random() * 255))); currentX =
-		 * currentX + rWidth + 5; if (currentX > 1850) { currentY = currentY +
-		 * 60; if (1 - i < 12) { break; } currentX = 0; } }
-		 * 
-		 * }
-		 */
-
-		for (int i = 0; i < 76; i++)
-		{
-			Random random = new Random();
-			int rWidth = random.nextInt(70) + 60;
-
-			Blocks.Blox[i + 3] = new Blocks(currentX, currentY, rWidth, 50, true, new Color((int) (Math.random() * 255), (int)
-
-			(Math.random() * 255), (int) (Math.random() * 255)));
-			currentX = currentX + rWidth + 5;
-			if (currentX > 1850)
-			{
-				currentY = currentY + 60;
-				if (76 - i < 12)
-				{
-					break;
-				}
-				currentX = 0;
-			}
-		}
+//
+//		int currentX = 0;
+//		int currentY = 400;
+//
+//		// Create Blox
+//		Blocks.Blox[0] = new Blocks(0, 0, 2400, 5, false, Color.BLUE);
+//		Blocks.Blox[1] = new Blocks(1895, 0, 5, 1000, false, Color.BLUE);
+//		Blocks.Blox[2] = new Blocks(0, 0, 5, 1000, false, Color.BLUE);
+//
+//		/*
+//		 * for (int i = 0; i < 1; i++) { Random random = new Random(); int
+//		 * rWidth = random.nextInt(70) + 60;
+//		 * 
+//		 * Blocks.Blox[i + 3] = new Blocks(currentX, currentY, 1000, 50, true,
+//		 * new Color((int) (Math.random() * 255), (int)
+//		 * 
+//		 * (Math.random() * 255), (int) (Math.random() * 255))); currentX =
+//		 * currentX + rWidth + 5; if (currentX > 1850) { currentY = currentY +
+//		 * 60; if (1 - i < 12) { break; } currentX = 0; } }
+//		 * 
+//		 * }
+//		 */
+//
+//		for (int i = 0; i < 76; i++)
+//		{
+//			Random random = new Random();
+//			int rWidth = random.nextInt(70) + 60;
+//
+//			Blocks.Blox[i + 3] = new Blocks(currentX, currentY, rWidth, 50, true, new Color((int) (Math.random() * 255), (int)
+//
+//			(Math.random() * 255), (int) (Math.random() * 255)));
+//			currentX = currentX + rWidth + 5;
+//			if (currentX > 1850)
+//			{
+//				currentY = currentY + 60;
+//				if (76 - i < 12)
+//				{
+//					break;
+//				}
+//				currentX = 0;
+//			}
+//		}
 
 	}
 
@@ -113,22 +98,6 @@ public class Atari_Breakout implements ActionListener, KeyListener, MouseMotionL
 	{
 		AudioClip sound = JApplet.newAudioClip(getClass().getResource(filename));
 		sound.play();
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		// TODO Auto-generated method stub
-		panel.update();
-		panel.repaint();
-		if (e.getSource() == play)
-		{
-			timer.stop();
-		}
-		if (e.getSource() == exit)
-		{
-			frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-		}
 	}
 
 	@Override
@@ -162,7 +131,8 @@ public class Atari_Breakout implements ActionListener, KeyListener, MouseMotionL
 	@Override
 	public void mouseMoved(MouseEvent e)
 	{
+		panel.holdposition = e.getX();
+		
 		// TODO Auto-generated method stub
-		panel.movePinger(e.getX());
 	}
 }
