@@ -12,6 +12,10 @@ public class Ball
 	private int height;
 	private int width;
 	public int direction = 2;
+	boolean moveRight;
+	boolean moveUp;
+	int speed = 2;
+	boolean lose;
 	private Rectangle collisionbox;
 
 	public Ball(int a, int b, int c, int d)
@@ -21,37 +25,75 @@ public class Ball
 		width = c;
 		height = d;
 		collisionbox = new Rectangle(a, b, c, d);
+		moveUp = true;
+		moveRight = true;
+		lose = false;
 	}
 
 	public void update()
 	{
-		moveBall();
+		//moveBall();
+		
+		if (moveRight)
+		{
+			x+=speed;
+		}
+		else {
+			x-=speed;
+		}
+		if (moveUp)
+		{
+			y-=speed;
+		}
+		else {
+			y+=speed;
+		}
+		if (x<=0)
+		{
+			moveRight=true;
+		}
+		if (x>= Atari_Breakout.panelWidth- width)
+		{
+			moveRight=false;
+		}
+		if (y<= 0)
+		{
+			moveUp=false;
+		}
+		if (y>= Atari_Breakout.panelHeight)
+		{
+			lose=true;
+		}
+		
 		collisionbox.setBounds(x, y, width, height);
+	}
+	
+	void changeUpDirection(){
+		moveUp=! moveUp;
 	}
 
 	public Rectangle getCollisionBox()
 	{
 		return collisionbox;
 	}
+	
+	public boolean lost(){
+		return lose;
+	}
 
+	public void setlost(boolean d){
+		lose=d;
+	}
+	
 	public void changeDirection()
 	{
-		if (direction == 0)
+		if (moveUp)
 		{
-			direction = 1;
-			return;
-		} else if (direction == 1)
-		{
-			direction = 2;
-			return;
-		} else if (direction == 2)
-		{
-			direction = 3;
-			return;
-		} else if (direction == 3)
-		{
-			direction = 0;
-			return;
+			moveUp=false;
+		}
+		
+		else {
+			moveUp=true;
 		}
 	}
 

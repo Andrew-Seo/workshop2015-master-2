@@ -89,19 +89,18 @@ public class Animation_Panel extends JPanel implements ActionListener
 		
 		if (r1.intersects(r2))
 		{
-			
 			ball.changeDirection();
-			frum.playSound("18529.wav");
+			//frum.playSound("18529.wav");
 		} 
 		
 		for (Blocks b: blocklist)
 		{
 			Rectangle rb = b.getCollisionBox();
-			if (rb.intersects(r2))
+			if (rb.intersects(r2) && b.isBroken() == false)
 			{
 				b.breakblox();
 				ball.changeDirection();
-				frum.playSound("18528.wav");
+				//frum.playSound("18528.wav");
 			}
 		}
 //				frum.playSound("18529.wav"); pinger intersects blox
@@ -112,36 +111,38 @@ public class Animation_Panel extends JPanel implements ActionListener
 	{
 		pinger.move(holdposition);
 		ball.update();
-//      pinger.update();
+        pinger.update();
 	checkcollisionbox();
-//		if (ball.y > 1000)
-//		{
-//			ball.x = spawnX;
-//			ball.y = spawnY;
-//			lives = lives - 1;
-//		}
-//		if (lives == 0)
-//		{
-//			frum.playSound("18533.wav");
-//			JOptionPane.showMessageDialog(null, "YOU LOSE!!!");
-//			System.exit(0);
-//		}
-//		System.out.println(Blocks.Blox.length);
+		if (ball.lost() == true)
+		{
+			ball.x = spawnX;
+			ball.y = spawnY;
+			lives = lives - 1;
+			ball.setlost(false);
+			ball.changeUpDirection();
+		}
+		if (lives == 0)
+		{
+			frum.playSound("18533.wav");
+			JOptionPane.showMessageDialog(null, "YOU LOSE!!!");
+			System.exit(0);
+		}
+
 //		boolean allbroken = true;
-//		for (int i = 0; i < Blocks.Blockamount - 1; i++)
-//		{
-//			if (Blocks.Blox[i].breakable)
-//			{
-//				if (Blocks.Blox[i].y != -100)
-//				{
-//					allbroken = false;
-//				}
-//			}
-//		}
+////		for (int i = 0; i < Blocks.Blockamount - 1; i++)
+////		{
+////			if (Blocks.Blox[i].breakable)
+////			{
+////				if (Blocks.Blox[i].y != -100)
+////				{
+////					allbroken = false;
+////				}
+////			}
+////		}
 //		if (allbroken)
 //		{
 //
-//			// replay = new Replay();
+//
 //			System.exit(0);
 //		}
 	}

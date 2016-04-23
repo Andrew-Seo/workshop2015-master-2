@@ -21,8 +21,8 @@ public class Atari_Breakout implements KeyListener, MouseMotionListener
 	JFrame frame;
 	Animation_Panel panel;
 
-	public final int panelWidth = 1900;
-	public final int panelHeight = 1000;
+	public final static int panelWidth = 1900;
+	public final static int panelHeight = 1000;
 	
 	public static void main(String[] args)
 	{
