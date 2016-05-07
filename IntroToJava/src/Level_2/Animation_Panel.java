@@ -23,8 +23,12 @@ public class Animation_Panel extends JPanel implements ActionListener
 	Font Win;
 	public final int blockwidth = 100;
 	public final int blockheight = 100;
+//	public final int row = 4;
+//	public final int column = 19;
 	public final int row = 4;
 	public final int column = 19;
+
+	
 	public final int menuState = 0;
 	public final int gameState = 1;
 	public final int menu2State = 2;
@@ -163,10 +167,16 @@ public class Animation_Panel extends JPanel implements ActionListener
 	
 	public void gameReset(){
 		blocklist.clear();
+		blocklist = new ArrayList<Blocks>();
 		generateBlocks();
 		ball = new Ball(spawnX, spawnY, 20, 20);
 		currentState = gameState;
 		brokenBlox = 0;
+		lives=lives+1;
+		if (lives >= 5)
+		{
+			lives = 5;
+		}
 	}
 
 	public void changeState(int a)
@@ -188,6 +198,7 @@ public class Animation_Panel extends JPanel implements ActionListener
 		if (r1.intersects(r2))
 		{
 			ball.changeDirection();
+			new Thread(new soundPlayer("18528.wav")).start();;
 			// frum.playSound("18529.wav");
 		}
 
@@ -202,8 +213,10 @@ public class Animation_Panel extends JPanel implements ActionListener
 				if (brokenBlox == totalBlox)
 				{
 					currentState = gameWinState;
+					new Thread(new soundPlayer("18533.wav")).start();;
 				}
 				// frum.playSound("18528.wav");
+				new Thread(new soundPlayer("18529.wav")).start();;
 			}
 		}
 		// frum.playSound("18529.wav"); pinger intersects blox
@@ -225,7 +238,7 @@ public class Animation_Panel extends JPanel implements ActionListener
 				ball.y = spawnY;
 				lives = lives - 1;
 				ball.setlost(false);
-				ball.changeUpDirection();
+				ball.changeDirection();
 			}
 
 			if (lives == 0)

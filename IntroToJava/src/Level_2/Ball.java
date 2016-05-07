@@ -3,6 +3,7 @@ package Level_2;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.Random;
 
 public class Ball
 {
@@ -15,7 +16,11 @@ public class Ball
 	boolean moveRight;
 	boolean moveUp;
 	int speed = 2;
+	int angle = -90;
+	float fx;
+	float fy;
 	boolean lose;
+	Random r = new Random();
 	private Rectangle collisionbox;
 
 	public Ball(int a, int b, int c, int d)
@@ -28,38 +33,46 @@ public class Ball
 		moveUp = true;
 		moveRight = true;
 		lose = false;
+		fx = x;
+		fy = y;
 	}
 
 	public void update()
 	{
 		//moveBall();
 		
-		if (moveRight)
-		{
-			x+=speed;
-		}
-		else {
-			x-=speed;
-		}
-		if (moveUp)
-		{
-			y-=speed;
-		}
-		else {
-			y+=speed;
-		}
+//		if (moveRight)
+//		{
+//			x+=speed;
+//		}
+//		else {
+//			x-=speed;
+//		}
+//		if (moveUp)
+//		{
+//			y-=speed;
+//		}
+//		else {
+//			y+=speed;
+//		}
 		if (x<=0)
 		{
-			moveRight=true;
+			changeDirection();
 		}
 		if (x>= Atari_Breakout.panelWidth- width)
 		{
-			moveRight=false;
+			changeDirection();
 		}
 		if (y<= 0)
 		{
-			moveUp=false;
+			changeDirection();
 		}
+		
+		fx += (float)(speed*Math.cos(Math.toRadians(angle)));
+		fy += (float)(speed*Math.sin(Math.toRadians(angle)));
+		x = (int) fx;
+		y = (int) fy;
+		
 		if (y>= Atari_Breakout.panelHeight)
 		{
 			lose=true;
@@ -87,14 +100,22 @@ public class Ball
 	
 	public void changeDirection()
 	{
-		if (moveUp)
+//		if (moveUp)
+//		{
+//			moveUp=false;
+//		}
+//		
+//		else {
+//			moveUp=true;
+//		}
+		if (angle >= 0 && angle <= 180)
 		{
-			moveUp=false;
+			angle = -r.nextInt(180);
+		}
+		else if (angle >= -180 && angle < 0){
+			angle = r.nextInt(180);
 		}
 		
-		else {
-			moveUp=true;
-		}
 	}
 
 	public void moveBall()

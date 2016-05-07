@@ -27,10 +27,6 @@ public class Atari_Breakout implements KeyListener, MouseMotionListener
 	public static void main(String[] args)
 	{
 
-		JOptionPane.showMessageDialog(null, "LOOK READ THE NEXT WINDOW CAREFULLY OR SUFFER THE CONSEQUENCES.\n IT IS VERY VERY IMPORTANT.");
-		JOptionPane.showMessageDialog(null,
-				"WARNING: If you have epilepsy or a seizure disorder. This may cause unexpected effects. \n DISCLAIMER: If you ignore the first sentence, and you get a seizure, it is not the creator's fault for he warned you. \n Also, there is a double jump effect that happens at random to spice the game up a bit. \n You have 5 Lives. \n Good Luck and have FUN.\n If you want to continue, press the \"START\" button. If you do not want to continue, press the \"Don't Start\" button.");
-
 		Atari_Breakout Window = new Atari_Breakout();
 
 	}
