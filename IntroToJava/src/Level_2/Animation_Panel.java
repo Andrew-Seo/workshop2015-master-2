@@ -21,26 +21,26 @@ public class Animation_Panel extends JPanel implements ActionListener
 	Atari_Breakout frum;
 	Font Big;
 	Font Win;
-	public final int blockwidth = 100;
-	public final int blockheight = 100;
-//	public final int row = 4;
-//	public final int column = 19;
-	public final int row = 4;
-	public final int column = 19;
-
-	
+	public static final int spawnX = new Random().nextInt(1875) + 25;
+	public static final int spawnY = 750;
+	public static int brokenBlox = 0;
+	public static int totalBlox;
 	public final int menuState = 0;
 	public final int gameState = 1;
 	public final int menu2State = 2;
 	public final int drawMenu2State = 3;
 	public final int gameWinState = 4;
 	public final int gameLoseState = 5;
+	public final int blockwidth = 100;
+	public final int blockheight = 100;
+	// public final int blockwidth = Atari_Breakout.panelWidth;
+	// public final int blockheight = 100;
+	public final int row = 4;
+	public final int column = 19;
+	// public final int row = 1;
+	// public final int column = 1;
 	public int holdposition = 0;
 	int currentState = menuState;
-	int totalBlox;
-	int brokenBlox = 0;
-	int spawnX = new Random().nextInt(1875) + 25;
-	int spawnY = 750;
 	int lives = 5;
 	boolean sound = true;
 
@@ -60,7 +60,7 @@ public class Animation_Panel extends JPanel implements ActionListener
 
 		blocklist = new ArrayList<Blocks>();
 		generateBlocks();
-		totalBlox = row*column;
+		totalBlox = row * column;
 
 		timer = new Timer(1000 / 240, this);
 		timer.start();
@@ -88,16 +88,13 @@ public class Animation_Panel extends JPanel implements ActionListener
 		} else if (currentState == menuState)
 		{
 			drawMenuState(g);
-		}
-		else if (currentState == menu2State)
+		} else if (currentState == menu2State)
 		{
 			drawMenu2State(g);
-		}
-		else if (currentState == gameWinState)
+		} else if (currentState == gameWinState)
 		{
 			drawWinState(g);
-		}
-		else if (currentState == gameLoseState)
+		} else if (currentState == gameLoseState)
 		{
 			drawLoseState(g);
 		}
@@ -128,14 +125,16 @@ public class Animation_Panel extends JPanel implements ActionListener
 		g.fillRect(0, 0, Atari_Breakout.panelWidth, Atari_Breakout.panelHeight);
 		g.setColor(Color.WHITE);
 		g.setFont(Big);
-		g.drawString("To Start Playing,", 100, 200);   
-		g.drawString("Hit the Right Arrow Key", 100, 300);
-		g.drawString("To Pause,", 100, 400);   
-		g.drawString("Hit the Left Arrow Key", 100, 500);
-		g.drawString("To Move the Pinger,", 100, 600);   
-		g.drawString("Move the Mouse", 100, 700);
+		g.drawString("To Start Playing,", 100, 150);
+		g.drawString("Hit the Right Arrow Key.", 100, 250);
+		g.drawString("To Pause,", 100, 350);
+		g.drawString("Hit the Left Arrow Key.", 100, 450);
+		g.drawString("To Move the Pinger,", 100, 550);
+		g.drawString("Move the Mouse.", 100, 650);
+		g.drawString("To restart the game,", 100, 750);
+		g.drawString("Press the Up Arrow Key.", 100, 850);
 	}
-	
+
 	public void drawMenu2State(Graphics g)
 	{
 		g.setColor(Color.BLACK);
@@ -144,8 +143,9 @@ public class Animation_Panel extends JPanel implements ActionListener
 		g.setFont(Win);
 		g.drawString("Paused", 400, 500);
 	}
-	
-	public void drawWinState(Graphics g){
+
+	public void drawWinState(Graphics g)
+	{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, Atari_Breakout.panelWidth, Atari_Breakout.panelHeight);
 		g.setColor(Color.WHITE);
@@ -154,7 +154,9 @@ public class Animation_Panel extends JPanel implements ActionListener
 		g.setFont(Big);
 		g.drawString("Thanks For Playing!", 150, 600);
 	}
-	public void drawLoseState (Graphics g){
+
+	public void drawLoseState(Graphics g)
+	{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, Atari_Breakout.panelWidth, Atari_Breakout.panelHeight);
 		g.setColor(Color.WHITE);
@@ -164,19 +166,21 @@ public class Animation_Panel extends JPanel implements ActionListener
 		g.setFont(Big);
 		g.drawString("Thanks For Playing Though.", 150, 600);
 	}
-	
-	public void gameReset(){
+
+	public void gameReset()
+	{
 		blocklist.clear();
 		blocklist = new ArrayList<Blocks>();
 		generateBlocks();
 		ball = new Ball(spawnX, spawnY, 20, 20);
 		currentState = gameState;
 		brokenBlox = 0;
-		lives=lives+1;
+		lives = lives + 5;
 		if (lives >= 5)
 		{
 			lives = 5;
 		}
+		ball.speed = 2;
 	}
 
 	public void changeState(int a)
@@ -197,8 +201,9 @@ public class Animation_Panel extends JPanel implements ActionListener
 
 		if (r1.intersects(r2))
 		{
-			ball.changeDirection();
-			new Thread(new soundPlayer("18528.wav")).start();;
+			ball.hitBlox(r1);
+			new Thread(new soundPlayer("18528.wav")).start();
+			;
 			// frum.playSound("18529.wav");
 		}
 
@@ -209,14 +214,20 @@ public class Animation_Panel extends JPanel implements ActionListener
 			{
 				brokenBlox++;
 				b.breakblox();
-				ball.changeDirection();
+				ball.hitBlox(rb);
 				if (brokenBlox == totalBlox)
 				{
 					currentState = gameWinState;
-					new Thread(new soundPlayer("18533.wav")).start();;
+					new Thread(new soundPlayer("18533.wav")).start();
+					;
+				}
+				if (brokenBlox % 20 == 0)
+				{
+					ball.speed += 1;
 				}
 				// frum.playSound("18528.wav");
-				new Thread(new soundPlayer("18529.wav")).start();;
+				new Thread(new soundPlayer("18529.wav")).start();
+				;
 			}
 		}
 		// frum.playSound("18529.wav"); pinger intersects blox

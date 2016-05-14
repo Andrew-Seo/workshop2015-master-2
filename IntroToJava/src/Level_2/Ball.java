@@ -16,7 +16,7 @@ public class Ball
 	boolean moveRight;
 	boolean moveUp;
 	int speed = 2;
-	int angle = -90;
+	int angle = -50;
 	float fx;
 	float fy;
 	boolean lose;
@@ -37,85 +37,125 @@ public class Ball
 		fy = y;
 	}
 
+	void hitVertical()
+	{
+		angle -= 2 * angle;
+	}
+
+	void hitHorizontal()
+	{
+		angle += 180 - (2 * angle);
+	}
+
+	void speedChange(int s)
+	{
+		speed = s;
+	}
+
 	public void update()
 	{
-		//moveBall();
-		
-//		if (moveRight)
-//		{
-//			x+=speed;
-//		}
-//		else {
-//			x-=speed;
-//		}
-//		if (moveUp)
-//		{
-//			y-=speed;
-//		}
-//		else {
-//			y+=speed;
-//		}
-		if (x<=0)
+		// moveBall();
+
+		// if (moveRight)
+		// {
+		// x+=speed;
+		// }
+		// else {
+		// x-=speed;
+		// }
+		// if (moveUp)
+		// {
+		// y-=speed;
+		// }
+		// else {
+		// y+=speed;
+		// }
+		fx += (float) (speed * Math.cos(Math.toRadians(angle)));
+		fy += (float) (speed * Math.sin(Math.toRadians(angle)));
+
+		if (fx <= 0)
 		{
-			changeDirection();
+			fx = 1;
+			hitHorizontal();
 		}
-		if (x>= Atari_Breakout.panelWidth- width)
+		if (fx >= Atari_Breakout.panelWidth - width)
 		{
-			changeDirection();
+			fx = Atari_Breakout.panelWidth - 1 - width;
+			hitHorizontal();
 		}
-		if (y<= 0)
+		if (fy >= Atari_Breakout.panelHeight - height)
 		{
-			changeDirection();
+			lose = true;
+			fx = Animation_Panel.spawnX;
+			fy = Animation_Panel.spawnY;
+			speed = 2;
 		}
-		
-		fx += (float)(speed*Math.cos(Math.toRadians(angle)));
-		fy += (float)(speed*Math.sin(Math.toRadians(angle)));
+		if (fy <= 0)
+		{
+			fy = 1;
+			hitVertical();
+		}
+
 		x = (int) fx;
 		y = (int) fy;
-		
-		if (y>= Atari_Breakout.panelHeight)
-		{
-			lose=true;
-		}
-		
+		angle %= 360;
+
 		collisionbox.setBounds(x, y, width, height);
+
 	}
-	
-	void changeUpDirection(){
-		moveUp=! moveUp;
+
+	void hitBlox(Rectangle r)
+	{
+		if (x > r.x && x + width < r.x + r.width)
+		{
+			hitVertical();
+		} else if (y > r.y && y + height < r.y + r.height)
+		{
+			hitHorizontal();
+		} else
+		{
+			angle -= new Random().nextInt(90) + 90;
+		}
+	}
+
+	void changeUpDirection()
+	{
+		moveUp = !moveUp;
 	}
 
 	public Rectangle getCollisionBox()
 	{
 		return collisionbox;
 	}
-	
-	public boolean lost(){
+
+	public boolean lost()
+	{
 		return lose;
 	}
 
-	public void setlost(boolean d){
-		lose=d;
+	public void setlost(boolean d)
+	{
+		lose = d;
 	}
-	
+
 	public void changeDirection()
 	{
-//		if (moveUp)
-//		{
-//			moveUp=false;
-//		}
-//		
-//		else {
-//			moveUp=true;
-//		}
+		// if (moveUp)
+		// {
+		// moveUp=false;
+		// }
+		//
+		// else {
+		// moveUp=true;
+		// }
 		if (angle >= 0 && angle <= 180)
 		{
 			angle = -r.nextInt(180);
-		}
-		else if (angle >= -180 && angle < 0){
+		} else if (angle >= -180 && angle < 0)
+		{
 			angle = r.nextInt(180);
 		}
-		
+
 	}
 
 	public void moveBall()
