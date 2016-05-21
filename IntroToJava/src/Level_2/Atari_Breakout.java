@@ -26,7 +26,7 @@ public class Atari_Breakout implements KeyListener, MouseMotionListener
 
 	public static void main(String[] args)
 	{
-
+		JOptionPane.showMessageDialog(null, "Be sure to read the Directions before you start :)");
 		Atari_Breakout Window = new Atari_Breakout();
 
 	}
@@ -118,7 +118,7 @@ public class Atari_Breakout implements KeyListener, MouseMotionListener
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP)
 		{
-			if (panel.currentState == panel.gameWinState || panel.currentState == panel.gameLoseState)
+			if (panel.currentState == panel.gameWinState || panel.currentState == panel.gameLoseState || panel.currentState == panel.gameState)
 			{
 				panel.gameReset();
 			}

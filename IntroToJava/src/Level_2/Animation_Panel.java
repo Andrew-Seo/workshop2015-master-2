@@ -21,6 +21,7 @@ public class Animation_Panel extends JPanel implements ActionListener
 	Atari_Breakout frum;
 	Font Big;
 	Font Win;
+	Font Small;
 	public static final int spawnX = new Random().nextInt(1875) + 25;
 	public static final int spawnY = 750;
 	public static int brokenBlox = 0;
@@ -57,6 +58,7 @@ public class Animation_Panel extends JPanel implements ActionListener
 		// blocks = new Blocks(925, 450, 125, 50, false, Color.BLUE);
 		Big = new Font("Times New Roman", Font.BOLD, 100);
 		Win = new Font("Times New Roman", Font.BOLD, 300);
+		Small = new Font("Times New Roman", Font.BOLD, 50);
 
 		blocklist = new ArrayList<Blocks>();
 		generateBlocks();
@@ -116,7 +118,9 @@ public class Animation_Panel extends JPanel implements ActionListener
 		g.setColor(Color.WHITE);
 		g.setFont(Big);
 		g.drawString("Lives:" + lives, 50, 100);
-
+		g.setFont(Small);
+		g.drawString("Blocks Broken:" + brokenBlox + "/76", 1400, 50);
+		
 	}
 
 	public void drawMenuState(Graphics g)
@@ -141,7 +145,17 @@ public class Animation_Panel extends JPanel implements ActionListener
 		g.fillRect(0, 0, Atari_Breakout.panelWidth, Atari_Breakout.panelHeight);
 		g.setColor(Color.WHITE);
 		g.setFont(Win);
-		g.drawString("Paused", 400, 500);
+		g.drawString("Paused", 800, 500);
+		g.setFont(Small);
+		g.drawString("Directions:", 100, 100);
+		g.drawString("To Start Playing,", 100, 150);
+		g.drawString("Hit the Right Arrow Key.", 100, 200);
+		g.drawString("To Pause,", 100, 350);
+		g.drawString("Hit the Left Arrow Key.", 100, 400);
+		g.drawString("To Move the Pinger,", 100, 550);
+		g.drawString("Move the Mouse.", 100, 600);
+		g.drawString("To restart the game,", 100, 750);
+		g.drawString("Press the Up Arrow Key.", 100, 800);
 	}
 
 	public void drawWinState(Graphics g)
@@ -165,6 +179,8 @@ public class Animation_Panel extends JPanel implements ActionListener
 		g.setColor(Color.WHITE);
 		g.setFont(Big);
 		g.drawString("Thanks For Playing Though.", 150, 600);
+		g.drawString("You Broke: " + brokenBlox + "/76 Blocks", 150, 700);
+		
 	}
 
 	public void gameReset()
@@ -203,8 +219,15 @@ public class Animation_Panel extends JPanel implements ActionListener
 		{
 			ball.hitBlox(r1);
 			new Thread(new soundPlayer("18528.wav")).start();
-			;
 			// frum.playSound("18529.wav");
+		}
+		if (r2.getY()>Atari_Breakout.panelHeight)
+		{
+			ball.x = spawnX;
+			ball.y = spawnY;
+			lives = lives - 1;
+			ball.setlost(false);
+			ball.changeDirection();
 		}
 
 		for (Blocks b : blocklist)

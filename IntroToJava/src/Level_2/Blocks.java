@@ -48,7 +48,7 @@ public class Blocks
 		{	
 			g.setColor(Color.BLACK);
 			Stroke f = g2.getStroke();
-			g2.setStroke(new BasicStroke(20));
+			g2.setStroke(new BasicStroke(10));
 			g.drawRect(x, y, width, height);
 			g2.setStroke(f);
 			g.setColor(randommy);
