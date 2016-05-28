@@ -221,14 +221,14 @@ public class Animation_Panel extends JPanel implements ActionListener
 			new Thread(new soundPlayer("18528.wav")).start();
 			// frum.playSound("18529.wav");
 		}
-		if (r2.getY()>Atari_Breakout.panelHeight)
-		{
-			ball.x = spawnX;
-			ball.y = spawnY;
-			lives = lives - 1;
-			ball.setlost(false);
-			ball.changeDirection();
-		}
+//		if (r2.getY()>Atari_Breakout.panelHeight)
+//		{
+//			ball.x = spawnX;
+//			ball.y = spawnY;
+//			lives = lives - 1;
+//			ball.setlost(false);
+//			ball.changeDirection();
+//		}
 
 		for (Blocks b : blocklist)
 		{
