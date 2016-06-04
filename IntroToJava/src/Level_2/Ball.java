@@ -8,6 +8,7 @@ import java.util.Random;
 public class Ball
 {
 
+	public static int speed = 2;
 	public int x;
 	public int y;
 	private int height;
@@ -15,7 +16,6 @@ public class Ball
 	public int direction = 2;
 	boolean moveRight;
 	boolean moveUp;
-	int speed = 2;
 	int angle = -50;
 	float fx;
 	float fy;
@@ -37,12 +37,12 @@ public class Ball
 		fy = y;
 	}
 
-	void hitVertical()
+	public void hitVertical()
 	{
 		angle -= 2 * angle;
 	}
 
-	void hitHorizontal()
+	public void hitHorizontal()
 	{
 		angle += 180 - (2 * angle);
 	}

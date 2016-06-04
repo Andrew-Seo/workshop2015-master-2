@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -32,6 +34,7 @@ public class Animation_Panel extends JPanel implements ActionListener
 	public final int drawMenu2State = 3;
 	public final int gameWinState = 4;
 	public final int gameLoseState = 5;
+	public final int scoreState = 6;
 	public final int blockwidth = 100;
 	public final int blockheight = 100;
 	// public final int blockwidth = Atari_Breakout.panelWidth;
@@ -44,6 +47,8 @@ public class Animation_Panel extends JPanel implements ActionListener
 	int currentState = menuState;
 	int lives = 5;
 	boolean sound = true;
+	String[] names = new String[5];
+	int[] time = new int[5];
 
 	Timer timer;
 
@@ -63,6 +68,32 @@ public class Animation_Panel extends JPanel implements ActionListener
 		blocklist = new ArrayList<Blocks>();
 		generateBlocks();
 		totalBlox = row * column;
+		
+		String data = "";
+			try
+			{
+				String filename ="BestTime,txt";
+				FileReader fr = new FileReader(filename);
+				BufferedReader br = new BufferedReader(fr);
+				String line; int cur=0; 
+				while ((line=br.readLine())!=null)
+				{
+					data = "\n" + line;
+					String[]sdata=line.split("");
+					names[cur]=sdata[0];
+					time[cur]=Integer.parseInt(sdata[1]);
+					++cur;
+				}
+					
+				fr.close();
+				br.close();
+				
+			} catch (Exception e)
+			{
+				
+				// TODO: handle exception
+			}
+			System.out.println(data);
 
 		timer = new Timer(1000 / 240, this);
 		timer.start();
@@ -100,6 +131,10 @@ public class Animation_Panel extends JPanel implements ActionListener
 		{
 			drawLoseState(g);
 		}
+		 else if (currentState == scoreState)
+			{
+				drawScoreState(g);
+			}
 	}
 
 	public void drawGameState(Graphics g)
@@ -181,6 +216,18 @@ public class Animation_Panel extends JPanel implements ActionListener
 		g.drawString("Thanks For Playing Though.", 150, 600);
 		g.drawString("You Broke: " + brokenBlox + "/76 Blocks", 150, 700);
 		
+	}
+	public void drawScoreState(Graphics g)
+	{
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, Atari_Breakout.panelWidth, Atari_Breakout.panelHeight);
+		g.setColor(Color.WHITE);
+		g.setFont(Win);
+		g.drawString("You Lose. ", 100, 500);
+		g.setColor(Color.WHITE);
+		g.setFont(Big);
+		g.drawString("Thanks For Playing Though.", 150, 600);
+		g.drawString("You Broke: " + brokenBlox + "/76 Blocks", 150, 700);
 	}
 
 	public void gameReset()
@@ -281,7 +328,14 @@ public class Animation_Panel extends JPanel implements ActionListener
 			}
 		}
 	}
-
+	
+	public void baller(){
+		ball.hitHorizontal();
+		ball.hitVertical();
+	}
+	public void baller1(){
+		ball.hitHorizontal();
+	}
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{

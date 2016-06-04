@@ -112,9 +112,37 @@ public class Atari_Breakout implements KeyListener, MouseMotionListener
 		{
 			panel.changeState(panel.gameState);
 		}
+		if (e.getKeyCode() == KeyEvent.VK_DOWN)
+		{
+			panel.changeState(panel.scoreState);
+		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
 			panel.changeState(panel.menu2State);
+		}
+		if (e.getKeyCode() == KeyEvent.VK_S)
+		{
+			Ball.speed++;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_A)
+		{
+			Ball.speed--;			
+		}
+		if (e.getKeyCode() == KeyEvent.VK_D)
+		{
+			panel.lives++;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_F)
+		{
+			panel.lives--;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_W)
+		{
+			panel.baller();
+		}
+		if (e.getKeyCode() == KeyEvent.VK_Q)
+		{
+			panel.baller1();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP)
 		{
