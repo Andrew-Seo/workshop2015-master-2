@@ -265,7 +265,7 @@ public class Animation_Panel extends JPanel implements ActionListener
 		if (r1.intersects(r2))
 		{
 			ball.hitBlox(r1);
-			new Thread(new soundPlayer("18528.wav")).start();
+			new Thread(new soundPlayer("/IntroToJava/18528.wav")).start();
 			// frum.playSound("18529.wav");
 		}
 //		if (r2.getY()>Atari_Breakout.panelHeight)
@@ -288,7 +288,7 @@ public class Animation_Panel extends JPanel implements ActionListener
 				if (brokenBlox == totalBlox)
 				{
 					currentState = gameWinState;
-					new Thread(new soundPlayer("18533.wav")).start();
+					new Thread(new soundPlayer("/IntroToJava/18533.wav")).start();
 					;
 				}
 				if (brokenBlox % 20 == 0)
@@ -296,7 +296,7 @@ public class Animation_Panel extends JPanel implements ActionListener
 					ball.speed += 1;
 				}
 				// frum.playSound("18528.wav");
-				new Thread(new soundPlayer("18529.wav")).start();
+				new Thread(new soundPlayer("/IntroToJava/18529.wav")).start();
 				;
 			}
 		}
