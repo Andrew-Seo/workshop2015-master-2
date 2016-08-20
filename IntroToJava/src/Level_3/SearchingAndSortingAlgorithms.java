@@ -46,11 +46,11 @@ public class SearchingAndSortingAlgorithms {
 				"sesquipedalian", "superabundant", "unencumbered", "unparagoned", "usufruct", });
 		assertEquals("circumlocution", Algorithms.findLongestWord(words));
 	}
-//
-//	/*
-//	 * 5. The Morse code for SOS is "... --- ..."
-//	 * Create a method that can tell if SOS is contained in a message.
-//	 */
+	//
+	// /*
+	// * 5. The Morse code for SOS is "... --- ..."
+	// * Create a method that can tell if SOS is contained in a message.
+	// */
 //	@Test
 //	public void testFindString() throws Exception {
 //		List<String> message1 = Arrays.asList(".... . .-. .-. --- / ... --- ... / -.-- .- .-.. .-.. ...".split("/"));

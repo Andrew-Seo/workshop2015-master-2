@@ -6,7 +6,7 @@ public class Algorithms
 {
 	public static void main(String[] args)
 	{
-		
+
 	}
 
 	public static Object findBrokenEgg(List<String> eggs)
@@ -16,7 +16,7 @@ public class Algorithms
 		{
 			if (eggs.get(i).contains("cracked"))
 			{
-				return(i);
+				return (i);
 			}
 		}
 		return -1;
@@ -29,7 +29,7 @@ public class Algorithms
 		{
 			if (oysters.get(i) == true)
 			{
-				return(i);
+				return (i);
 			}
 		}
 		return -1;
@@ -52,7 +52,7 @@ public class Algorithms
 	public static Object findLongestWord(List<String> words)
 	{
 		// TODO Auto-generated method stub
-		String Longest = "aa";
+		String Longest = "smol";
 		for (int i = 0; i < words.size(); i++)
 		{
 			if (words.get(i).length() > Longest.length())
@@ -63,17 +63,14 @@ public class Algorithms
 		System.out.println(Longest);
 		return Longest;
 	}
-//
-//	public static Object containsSOS(List<String> message)
-//	{
-//		// TODO Auto-generated method stub
-//		if (message)
-//		{
-//			
-//		}
-//		if (condition)
-//		{
-//			
-//		}
-//	}
+
+	public static Object containsSOS(List<String> message)
+	{
+		// TODO Auto-generated method stub
+		String Code = "... --- ...";
+		if (message)
+		{
+
+		}
+	}
 }
