@@ -45,10 +45,11 @@ public class santaList implements MouseListener
 				"http://www.marshu.com/articles/images-website/articles/presidents-on-us-paper-money/one-hundred-100-dollar-bill.jpg"));
 		labels.add(this
 				.loadImageFromTheInternet("http://www.toysrus.com/graphics/tru_prod_images/Radio-Flyer-Boys-Fold-2--pTRU1-12786032dt.jpg"));
+
 		mouseClicked(null);
-		
+
 		panel.addMouseListener(this);
-		
+
 		frame.setSize(frameLength, frameWidth);
 		frame.pack();
 	}
@@ -77,10 +78,12 @@ public class santaList implements MouseListener
 	@Override
 	public void mouseClicked(MouseEvent e)
 	{
-		// TODO Auto-generated method stub
-		int Random = new java.util.Random().nextInt(5) + 1;
+		panel.removeAll();
+		int Random = new java.util.Random().nextInt(5);
 		JLabel something = labels.get(Random);
 		panel.add(something);
+		System.out.println(something);
+		frame.pack();
 	}
 
 	@Override

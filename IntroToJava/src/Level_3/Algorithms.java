@@ -1,5 +1,6 @@
 package Level_3;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Algorithms
@@ -68,9 +69,53 @@ public class Algorithms
 	{
 		// TODO Auto-generated method stub
 		String Code = "... --- ...";
-		if (message)
+		for (int i = 0; i < message.size(); i++)
 		{
-
+			if (message.get(i).contains(Code))
+			{
+				return true;
+			}
 		}
+		return false;
+	}
+	static int findIndexOfSmallest(List<Double> results){
+		double smallest = 60.3;
+		int indexOfSmallest = 0;
+		for (int i = 0; i < results.size(); i++)
+		{
+			if (results.get(i) <= smallest)
+			{
+				smallest = results.get(i);
+				indexOfSmallest = i;
+			}
+		}
+		System.out.println(indexOfSmallest);
+		return indexOfSmallest;
+	}
+
+	public static ArrayList<Double> sortScores(List<Double> results)
+	{
+		ArrayList <Double> sorted = new ArrayList<Double>();
+		int size = results.size();
+		for (int i = 0; i < size; i++)
+		{
+			int indexOfSmallest = findIndexOfSmallest(results);
+			sorted.add(results.get(indexOfSmallest));
+			results.set(indexOfSmallest, 1000.0);
+		}
+		System.out.println(results);
+		return sorted;
+	}
+
+	public static Object sortDNA(List<String> unsortedSequences)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static List<String> sortWords(List<String> words)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
