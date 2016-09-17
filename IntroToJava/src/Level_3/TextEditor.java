@@ -2,6 +2,7 @@ package Level_3;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Stack;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,6 +17,7 @@ public class TextEditor implements KeyListener
 
 	static final int frameLength = 500;
 	static final int frameWidth = 500;
+	static Stack<Character> stock = new Stack<Character>();
 
 	public static void main(String[] args)
 	{
@@ -50,7 +52,13 @@ public class TextEditor implements KeyListener
 	{
 		if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE)
 		{
+			stock.push(tex.charAt(tex.length() -1));
 			tex = tex.substring(0, tex.length() -1);
+			
+			text.setText(tex);
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_LEFT){
+			tex = tex + stock.pop();
 			text.setText(tex);
 		}
 		else {

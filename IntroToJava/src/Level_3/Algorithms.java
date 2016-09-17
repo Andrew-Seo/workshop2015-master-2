@@ -2,12 +2,14 @@ package Level_3;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class Algorithms
 {
+	static Stack<Character> stock = new Stack<Character>();
+
 	public static void main(String[] args)
 	{
-
 	}
 
 	public static Object findBrokenEgg(List<String> eggs)
@@ -78,7 +80,9 @@ public class Algorithms
 		}
 		return false;
 	}
-	static int findIndexOfSmallest(List<Double> results){
+
+	static int findIndexOfSmallest(List<Double> results)
+	{
 		double smallest = 60.3;
 		int indexOfSmallest = 0;
 		for (int i = 0; i < results.size(); i++)
@@ -95,7 +99,7 @@ public class Algorithms
 
 	public static ArrayList<Double> sortScores(List<Double> results)
 	{
-		ArrayList <Double> sorted = new ArrayList<Double>();
+		ArrayList<Double> sorted = new ArrayList<Double>();
 		int size = results.size();
 		for (int i = 0; i < size; i++)
 		{
