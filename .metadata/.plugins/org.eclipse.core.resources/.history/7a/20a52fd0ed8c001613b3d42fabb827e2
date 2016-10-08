@@ -1,0 +1,18 @@
+package WarmUps;
+
+public class Number_1_addon
+{
+	public int exlaimcount(String string)
+	{
+		int count = 0;
+		for (int i = 0; i < string.length(); i++)
+		{
+			if (string.charAt(i) == 'i')
+			{
+				count++;
+			}
+
+		}
+		return count;
+	}
+}
