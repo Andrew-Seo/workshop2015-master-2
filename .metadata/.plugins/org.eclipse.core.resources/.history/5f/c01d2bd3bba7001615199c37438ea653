@@ -1,0 +1,52 @@
+package Level_3;
+
+import java.util.Arrays;
+
+public class Bubble_Sort
+{
+	public static void main(String[] args)
+	{
+		String[] words = { "guacamole", "oranges", "papayas", "banana", "apple" };
+		String[] sortedWords = sort(words);
+		for (int i = 0; i < sortedWords.length; i++)
+		{
+			System.out.println(sortedWords);
+		}
+	}
+
+	private static String[] sort(String[] words)
+	{
+		// procedure bubbleSort( A : list of sortable items )
+		// n = length(A)
+		// repeat
+		// swapped = false
+		// for i = 1 to n-1 inclusive do
+		// /* if this pair is out of order */
+		// if A[i-1] > A[i] then
+		// /* swap them and remember something changed */
+		// swap( A[i-1], A[i] )
+		// swapped = true
+		// end if
+		// end for
+		// until not swapped
+		// end procedure
+		int n = words.length;
+		boolean swapped;
+		String[] sortedWords = Arrays.copyOf(words, n);
+		do
+		{
+			swapped = false;
+			for (int i = 1; i <= n - 1; i++)
+			{
+				if (sortedWords[n - 1].compareTo(sortedWords[n]) > 0)
+				{
+					String w = sortedWords[n - 1];
+					sortedWords[n - 1] = sortedWords[n];
+					sortedWords[n] = w;
+					swapped = true;
+				}
+			}
+		} while (!swapped);
+		return sortedWords;
+	}
+}
