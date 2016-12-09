@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="PalindromesTest" project="Level 4" tests="5" started="5" failures="0" errors="0" ignored="0">
+  <testsuite name="PalindromesTest" time="0.0">
+    <testcase name="testIsPalindromeMultipleWords" classname="PalindromesTest" time="0.0"/>
+    <testcase name="testIsPalindromeSentence1" classname="PalindromesTest" time="0.0"/>
+    <testcase name="testIsPalindromeSentence2" classname="PalindromesTest" time="0.0"/>
+    <testcase name="testIsPalindromeSimple" classname="PalindromesTest" time="0.0"/>
+    <testcase name="testIsPalindromeMixedCase" classname="PalindromesTest" time="0.0"/>
+  </testsuite>
+</testrun>
